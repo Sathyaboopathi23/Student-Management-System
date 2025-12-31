@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .stat-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .stat-card h6 {
+            color: #777;
+            font-weight: 600;
+        }
+
+        .stat-card h4 {
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .learning-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            
+        }
+            
+        .badge-uiux {
+            background: #e7f0ff;
+            color: #1e63ff;
+            font-weight: 600;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .progress {
+            height: 12px;
+            border-radius: 10px;
+        }
+
+        .filter-tabs {
+            background: #fff;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .filter-tabs .btn {
+            border-radius: 30px;
+            padding: 6px 18px;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .filter-tabs .btn.active {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        .course-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .course-img {
+            position: relative;
+            height: 170px;
+        }
+
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rating {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #fff;
+            padding: 4px 8px;
+            font-size: 13px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .category {
+            color: #0d6efd;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .course-title {
+            font-weight: 700;
+            margin: 6px 0 12px;
+        }
+
+        .instructor {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .instructor img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+
+
+        .progress-bar {
+            width: 32%;
+            background: #0d6efd;
+            border-radius: 10px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #6c757d;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="top-header">
+    Comprehensive student management system
+</div>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand logo-wrapper" href="home.html">
+            <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+            <span class="logo-text">Edu manage</span>
+        </a>
+
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link " href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link " href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link active" href="course.html">Course</a></li>
+                <li class="nav-item"><a class="nav-link" href="session.html">Sessions</a></li>
+                <li class="nav-item"><a class="nav-link" href="event.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-bell text-white fs-4" data-bs-toggle="modal"
+                data-bs-target="#notificationModal" style="cursor: pointer;"></i>
+                <i class="bi bi-headset text-white fs-4" onclick="window.location.href='contact.html'" style="cursor: pointer;"></i>
+                
+                <a class="d-flex align-items-center user-btn dropdown-toggle text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="user-img" alt="User">
+                    <span class="ms-2">Ravi</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade notification-modal"
+     id="notificationModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-4">
+          <div class="notification-title">Attendance Alert:</div>
+          <div class="notification-text">
+            "Your attendance has fallen below 75%. Please attend upcoming classes regularly."
+          </div>
+        </div>
+
+        <div>
+          <div class="notification-title">Event Notification:</div>
+          <div class="notification-text">
+            "Cultural Fest 2025 registrations are now open! Join before Nov 10th."
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade modal1" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Register Free !</h2>
+
+            <input type="email" class="form-control custom-input mb-3" placeholder="Enter your e-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn login-btn w-50" onclick="loginSuccess()">Login</button>
+                <a href="#" class="forgot-link">Forget your password?</a>
+            </div>
+
+            <div class="text-center my-3">
+                <span class="line"></span>
+                <span class="mx-2 fw-semibold">Sign Up Using</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="social-box text-center">
+                <i class="bi bi-google"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+            </div>
+
+            <p class="text-center mt-4">
+                Don't have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#signUpModal">Create New Account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Login Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="signUpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Sign Up</h2>
+
+            <input type="text" class="form-control custom-input mb-3" placeholder="Full Name">
+            <input type="email" class="form-control custom-input mb-3" placeholder="E-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <button class="btn login-btn w-50 d-block" style="margin: 50px auto;" onclick="signupSuccess()">Sign Up</button>
+           
+            <p class="text-center mt-4">
+                Already have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#registerModal">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Signup Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<script>
+    function loginSuccess() {
+        let registerModal = bootstrap.Modal.getInstance(
+            document.getElementById('registerModal')
+        );
+        registerModal.hide();
+
+        let successModal = new bootstrap.Modal(
+            document.getElementById('successModal')
+        );
+        successModal.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+
+    function signupSuccess() {
+        let signUpModal = bootstrap.Modal.getInstance(
+            document.getElementById('signUpModal')
+        );
+        signUpModal.hide();
+
+        let successModal1 = new bootstrap.Modal(
+            document.getElementById('successModal1')
+        );
+        successModal1.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+</script>
+
+<div class="container-fluid py-4">
+  <div class="row g-4">
+
+    <div class="col-lg-3 col-xl-2">
+
+        <div class="sidebar h-100">
+            <h3>Edu Track</h3>
+
+            <a href="dashboard.html" ><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="course.html" class="active"><i class="bi bi-book"></i> My Courses</a>
+            <a href="session.html"><i class="bi bi-calendar"></i> Schedule</a>
+            <a href="attendance.html"><i class="bi bi-clipboard-check"></i> Attendance</a>
+            <a href="assignment.html"><i class="bi bi-journal-text"></i> Assignments</a>
+            <a href="finance.html"><i class="bi bi-cash"></i> Finance Details</a>
+            <a href="exam.html"><i class="bi bi-mortarboard"></i> Exam and Grades</a>
+
+            <div class="profile">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="rounded-circle">
+                    <div class="profile-info">
+                    <strong>Mikejohn</strong><br>
+                    <small class="text-muted">Mike@gmail.com</small>
+                    </div>
+                </div>
+                <button class="btn btn-primary rounded-pill" onclick="window.location.href='index.html'">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main col-lg-9 col-xl-10">
+        <div class="header d-flex justify-content-between align-items-center">
+            <div>
+                <h4>My Learnings</h4>
+                <p class="text-muted mb-0">Here's what's happening with your studies today.</p>
+            </div>
+            <input type="text" class="form-control search-box w-25" placeholder="🔍 Search Information">
+        </div>
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                    <h6>In Progress</h6>
+                    <div class="icon-circle bg-primary text-white">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+                    </div>
+                    <h4>4 Courses</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                    <h6>Completed</h6>
+                    <div class="icon-circle bg-success text-white">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    </div>
+                    <h4>12 Courses</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                    <h6>Certificates</h6>
+                    <div class="icon-circle bg-purple text-white" style="background:#a855f7">
+                        <i class="bi bi-award"></i>
+                    </div>
+                    </div>
+                    <h4>7 Earned</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                    <h6>Hours Spent</h6>
+                    <div class="icon-circle bg-info text-white">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    </div>
+                    <h4>142h 30m</h4>
+                </div>
+            </div>
+        </div>
+        
+        <div class="learning-card">
+            <div class="d-flex justify-content-between mb-3">
+                <div>
+                    <h5 class="fw-bold fs-2">Continue Learning</h5>
+                    <p class="text-muted mb-0 fs-5">Pick up where you left off</p>
+                </div>
+                <div class="text-muted">
+                    <i class="bi bi-clock"></i> 2h 15m left
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-md-6">
+                    
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/x3dQsMkJgDg?si=JgpLncjolPlB_YV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen  ></iframe>
+                </div>
+
+                <div class="col-md-6">
+                    <span class="badge-uiux">UI/UX Design</span>
+                    <h5 class="fw-bold fs-3">Advanced Prototyping in Figma</h5>
+                    <p class="text-muted fs-4">
+                    Master interactive components, variables, and advanced animation
+                    techniques to build realistic prototypes.
+                    </p>
+
+                    <div class="d-flex align-items-center">
+                        <div class="progress flex-grow-1 me-3">
+                            <div class="progress-bar" style="width:75%"></div>
+                        </div>
+                        <strong>75%</strong>
+                    </div>
+                    <small class="text-muted fs-5">Progress (Module 3/8)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5 p-5" style="background-color: white;border-radius: 10px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold fs-2">My Courses</h3>
+
+        <div class="filter-tabs">
+            <button class="btn active fs-5">All</button>
+            <button class="btn fs-5">Active</button>
+            <button class="btn fs-5">Completed</button>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="course-card">
+                <div class="course-img">
+                    <span class="rating">4.8 ⭐</span>
+                    <img src="images/632f4d99af5c8baee79fe2f5dd4e5da10ea333cd.png" alt="image 1">
+                </div>
+
+                <div class="p-3">
+                    <a href="#" class="category">Development</a>
+                    <h5 class="course-title">Full Stack Python Bootcamp</h5>
+
+                    <div class="instructor">
+                        <img src="images/e317ed5d17c4bf44028fbfa9a432d702131db222.jpg" alt="Profile">
+                        <span>Dr. Angela Yu</span>
+                    </div>
+
+                    <div class="progress mt-3">
+                        <div class="progress-bar"></div>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>32% Complete</span>
+                        <span>45/120 lessons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="course-card">
+                <div class="course-img">
+                    <span class="rating">4.9 ⭐</span>
+                    <img src="images/f7165ee51be6fd7cc07d62f1e3ae955b6ea6b8d1.png" alt="image 2">
+                </div>
+
+                <div class="p-3">
+                    <a href="#" class="category">Marketing</a>
+                    <h5 class="course-title">Digital Marketing Masterclass</h5>
+
+                    <div class="instructor">
+                        <img src="images/e317ed5d17c4bf44028fbfa9a432d702131db222.jpg" alt="Profile">
+                        <span>Dr. Angela Yu</span>
+                    </div>
+
+                    <div class="progress mt-3">
+                        <div class="progress-bar"></div>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>32% Complete</span>
+                        <span>45/120 lessons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="course-card">
+                <div class="course-img">
+                    <span class="rating">4.8 ⭐</span>
+                    <img src="images/632f4d99af5c8baee79fe2f5dd4e5da10ea333cd.png" alt="image 3">
+                </div>
+
+                <div class="p-3">
+                    <a href="#" class="category">Development</a>
+                    <h5 class="course-title">Full Stack Python Bootcamp</h5>
+
+                    <div class="instructor">
+                        <img src="images/e317ed5d17c4bf44028fbfa9a432d702131db222.jpg" alt="Profile">
+                        <span>Dr. Angela Yu</span>
+                    </div>
+
+                    <div class="progress mt-3">
+                        <div class="progress-bar"></div>
+                    </div>
+
+                    <div class="progress-info">
+                        <span>32% Complete</span>
+                        <span>45/120 lessons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer-section">
+    <div class="container px-2">
+
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5 col-md-6">
+                <div class="d-flex mb-3">
+                    <a class="navbar-brand logo-wrapper" href="#">
+                        <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+                        <span class="logo-text">Edu manage</span>
+                    </a>    
+                    <div style="margin-left: 10px;margin-top: 15px;">
+                        <h4 class="mb-0 text-white fw-bold">EduManage</h4>
+                        <p class="footer-desc">
+                            Modern student management system for educational institutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Home</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Event</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 text-lg-end">
+                <h5 class="footer-title">Follow Us On :</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-google"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-bottom">
+            © 2025 EduManage. All rights reserved.
+        </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

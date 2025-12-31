@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .card-box {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .badge-red { background: red; color: #fff; }
+        .badge-yellow { background: #ffeb3b; color: #000; }
+        .badge-green { background: #57ff57; color: #000; }
+
+        .file-box {
+            background: #f5f7fa;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .report-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .donut {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(#3cff00 0 70%, #ff0000 70% 85%, #ffeb3b 85% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut span {
+            background: #fff;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .progress {
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        .progress.green { background: #3cff00; width: 70%; }
+        .progress.red { background: red; width: 15%; }
+        .progress.yellow { background: #ffeb3b; width: 15%; }
+
+        .bars {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 160px;
+        }
+
+        .bar {
+            width: 35px;
+            border-radius: 18px;
+        }
+
+        .bar.green { height: 140px; background: #3cff00; }
+        .bar.red { height: 100px; background: red; }
+        .bar.yellow { height: 120px; background: #ffeb3b; }
+    </style>
+</head>
+<body>
+<div class="top-header">
+    Comprehensive student management system
+</div>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand logo-wrapper" href="home.html">
+            <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+            <span class="logo-text">Edu manage</span>
+        </a>
+
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link " href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link " href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="course.html">Course</a></li>
+                <li class="nav-item"><a class="nav-link" href="session.html">Sessions</a></li>
+                <li class="nav-item"><a class="nav-link" href="event.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-bell text-white fs-4" data-bs-toggle="modal"
+                data-bs-target="#notificationModal" style="cursor: pointer;"></i>
+                <i class="bi bi-headset text-white fs-4" onclick="window.location.href='contact.html'" style="cursor: pointer;"></i>
+                
+                <a class="d-flex align-items-center user-btn dropdown-toggle text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="user-img" alt="User">
+                    <span class="ms-2">Ravi</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade notification-modal"
+     id="notificationModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-4">
+          <div class="notification-title">Attendance Alert:</div>
+          <div class="notification-text">
+            "Your attendance has fallen below 75%. Please attend upcoming classes regularly."
+          </div>
+        </div>
+
+        <div>
+          <div class="notification-title">Event Notification:</div>
+          <div class="notification-text">
+            "Cultural Fest 2025 registrations are now open! Join before Nov 10th."
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade modal1" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Register Free !</h2>
+
+            <input type="email" class="form-control custom-input mb-3" placeholder="Enter your e-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn login-btn w-50" onclick="loginSuccess()">Login</button>
+                <a href="#" class="forgot-link">Forget your password?</a>
+            </div>
+
+            <div class="text-center my-3">
+                <span class="line"></span>
+                <span class="mx-2 fw-semibold">Sign Up Using</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="social-box text-center">
+                <i class="bi bi-google"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+            </div>
+
+            <p class="text-center mt-4">
+                Don't have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#signUpModal">Create New Account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Login Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="signUpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Sign Up</h2>
+
+            <input type="text" class="form-control custom-input mb-3" placeholder="Full Name">
+            <input type="email" class="form-control custom-input mb-3" placeholder="E-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <button class="btn login-btn w-50 d-block" style="margin: 50px auto;" onclick="signupSuccess()">Sign Up</button>
+           
+            <p class="text-center mt-4">
+                Already have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#registerModal">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Signup Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<script>
+    function loginSuccess() {
+        let registerModal = bootstrap.Modal.getInstance(
+            document.getElementById('registerModal')
+        );
+        registerModal.hide();
+
+        let successModal = new bootstrap.Modal(
+            document.getElementById('successModal')
+        );
+        successModal.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+
+    function signupSuccess() {
+        let signUpModal = bootstrap.Modal.getInstance(
+            document.getElementById('signUpModal')
+        );
+        signUpModal.hide();
+
+        let successModal1 = new bootstrap.Modal(
+            document.getElementById('successModal1')
+        );
+        successModal1.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+</script>
+
+<div class="container-fluid py-4">
+  <div class="row g-4">
+
+    <div class="col-lg-3 col-xl-2">
+
+        <div class="sidebar h-100">
+            <h3>Edu Track</h3>
+
+            <a href="dashboard.html" ><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="course.html" ><i class="bi bi-book"></i> My Courses</a>
+            <a href="session.html"><i class="bi bi-calendar"></i> Schedule</a>
+            <a href="attendance.html"><i class="bi bi-clipboard-check"></i> Attendance</a>
+            <a href="assignment.html" class="active"><i class="bi bi-journal-text"></i> Assignments</a>
+            <a href="finance.html"><i class="bi bi-cash"></i> Finance Details</a>
+            <a href="exam.html"><i class="bi bi-mortarboard"></i> Exam and Grades</a>
+
+            <div class="profile">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="rounded-circle">
+                    <div class="profile-info">
+                    <strong>Mikejohn</strong><br>
+                    <small class="text-muted">Mike@gmail.com</small>
+                    </div>
+                </div>
+                <button class="btn btn-primary rounded-pill" onclick="window.location.href='index.html'">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main col-lg-9 col-xl-10">
+        <div class="header d-flex justify-content-between align-items-center">
+            <div>
+                <h4>Assignments Details Overview</h4>
+                <p class="text-muted mb-0">Here's what's happening with your Assignments today.</p>
+            </div>
+            <input type="text" class="form-control search-box w-25" placeholder="🔍 Search Information">
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card-box">
+                            <span class="badge badge-red">Due Tomorrow</span>
+                            <h5 class="mt-3">Calculus Problem Set 4</h5>
+                            <p class="text-muted mb-2">Mathematics • Mr. Smith</p>
+                            <small>+2 classmates working</small>
+
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <span>11:59 PM</span>
+                                <button class="btn btn-dark btn-sm">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-box">
+                            <span class="badge badge-yellow">Due in 3 Days</span>
+                            <h5 class="mt-3">Modern History Essay</h5>
+                            <p class="text-muted">History • Ms. Davis</p>
+                            <small>+2 classmates working</small>
+
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <span>PDF Required</span>
+                                <button class="btn btn-secondary btn-sm">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-box">
+                            <span class="badge badge-green">Submitted</span>
+                            <h5 class="mt-3">Physics Lab Report</h5>
+                            <p class="text-muted">Physics • Dr. Brown</p>
+
+                            <div class="file-box mt-3">
+                                📄 lab_report_final.docx
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-box">
+                            <span class="badge badge-green">Submitted</span>
+                            <h5 class="mt-3">Physics Lab Report</h5>
+                            <p class="text-muted">Physics • Dr. Brown</p>
+
+                            <div class="file-box mt-3">
+                                📄 lab_report_final.docx
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-3">
+                                <span>Oct 24</span>
+                                <strong>Grading...</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card-box report-card h-100">
+
+                    <h6 class="text-danger text-center fw-bold mb-3">Reports</h6>
+
+                    <div class="donut mx-auto mb-4">
+                        <span>Assignment<br>Percentage</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <small>Submitted Percentage</small>
+                        <div class="progress green"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <small>Due Previous Week</small>
+                        <div class="progress red"></div>
+                    </div>
+
+                    <div class="mb-4">
+                        <small>Today Pending</small>
+                        <div class="progress yellow"></div>
+                    </div>
+
+                    <div class="bars">
+                        <div class="bar green"></div>
+                        <div class="bar red"></div>
+                        <div class="bar yellow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer-section">
+    <div class="container px-2">
+
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5 col-md-6">
+                <div class="d-flex mb-3">
+                    <a class="navbar-brand logo-wrapper" href="#">
+                        <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+                        <span class="logo-text">Edu manage</span>
+                    </a>    
+                    <div style="margin-left: 10px;margin-top: 15px;">
+                        <h4 class="mb-0 text-white fw-bold">EduManage</h4>
+                        <p class="footer-desc">
+                            Modern student management system for educational institutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Home</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Event</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 text-lg-end">
+                <h5 class="footer-title">Follow Us On :</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-google"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-bottom">
+            © 2025 EduManage. All rights reserved.
+        </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

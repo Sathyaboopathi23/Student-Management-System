@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-header">
+    Comprehensive student management system
+</div>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand logo-wrapper" href="home.html">
+            <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+            <span class="logo-text">Edu manage</span>
+        </a>
+
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="course.html">Course</a></li>
+                <li class="nav-item"><a class="nav-link" href="session.html">Sessions</a></li>
+                <li class="nav-item"><a class="nav-link" href="event.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-bell text-white fs-4" data-bs-toggle="modal"
+                data-bs-target="#notificationModal" style="cursor: pointer;"></i>
+                <i class="bi bi-headset text-white fs-4" onclick="window.location.href='contact.html'" style="cursor: pointer;"></i>
+                
+                <a class="d-flex align-items-center user-btn dropdown-toggle text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="user-img" alt="User">
+                    <span class="ms-2">Ravi</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade notification-modal"
+     id="notificationModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-4">
+          <div class="notification-title">Attendance Alert:</div>
+          <div class="notification-text">
+            "Your attendance has fallen below 75%. Please attend upcoming classes regularly."
+          </div>
+        </div>
+
+        <div>
+          <div class="notification-title">Event Notification:</div>
+          <div class="notification-text">
+            "Cultural Fest 2025 registrations are now open! Join before Nov 10th."
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade modal1" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Register Free !</h2>
+
+            <input type="email" class="form-control custom-input mb-3" placeholder="Enter your e-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn login-btn w-50" onclick="loginSuccess()">Login</button>
+                <a href="#" class="forgot-link">Forget your password?</a>
+            </div>
+
+            <div class="text-center my-3">
+                <span class="line"></span>
+                <span class="mx-2 fw-semibold">Sign Up Using</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="social-box text-center">
+                <i class="bi bi-google"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+            </div>
+
+            <p class="text-center mt-4">
+                Don't have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#signUpModal">Create New Account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Login Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="signUpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Sign Up</h2>
+
+            <input type="text" class="form-control custom-input mb-3" placeholder="Full Name">
+            <input type="email" class="form-control custom-input mb-3" placeholder="E-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <button class="btn login-btn w-50 d-block" style="margin: 50px auto;" onclick="signupSuccess()">Sign Up</button>
+           
+            <p class="text-center mt-4">
+                Already have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#registerModal">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Signup Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<script>
+    function loginSuccess() {
+        let registerModal = bootstrap.Modal.getInstance(
+            document.getElementById('registerModal')
+        );
+        registerModal.hide();
+
+        let successModal = new bootstrap.Modal(
+            document.getElementById('successModal')
+        );
+        successModal.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+
+    function signupSuccess() {
+        let signUpModal = bootstrap.Modal.getInstance(
+            document.getElementById('signUpModal')
+        );
+        signUpModal.hide();
+
+        let successModal1 = new bootstrap.Modal(
+            document.getElementById('successModal1')
+        );
+        successModal1.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+</script>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center mb-5 g-5">
+            <div class="col-md-6">
+                <h1 class="hero-title">The #1 Platform for Modern Schools</h1>
+            </div>
+            <div class="col-md-6 ">
+                <form class="d-flex search-box">
+                    <i class="bi bi-search"></i>
+                    <input class="form-control" type="search" placeholder="Search information">
+                </form>
+            </div>
+        </div>
+
+        <div class="row hero-box">
+            <div class="col-md-6">
+                <h2 class="my-4">Streamline Your School Management</h2>
+                <p>
+                    EduFlow provides an all-in-one solution to manage student data,
+                    track academic progress, and enhance communication between teachers,
+                    students, and parents.
+                </p>
+
+                <div class="mt-4">
+                    <a href="dashboard.html" class="btn dashboard-btn">Go to Dashboard Now</a>
+                    <a href="contact.html" class="enquiry-link">Enquiry <i class="bi bi-arrow-right" style="color: blue;"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <img src="images/1a18c972392fa335f524f310c18261d298e47225.png" class="hero-img" alt="Student Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section" >
+    <div class="container position-relative">
+        <div class="text-center">
+            <h2 class="features-title">Powerful Features</h2>
+            <p class="features-subtitle">
+                Everything you need to manage your institution effectively
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-person-badge feature-icon"></i>
+                    <h5>Student Management</h5>
+                    <p>
+                        Easily manage student profiles, enrollment, and personal
+                        information in one centralized system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-book feature-icon"></i>
+                    <h5>Course Administration</h5>
+                    <p>
+                        Create and manage courses, assign instructors, and track
+                        curriculum progress effortlessly.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-graph-up-arrow feature-icon"></i>
+                    <h5>Performance Analytics</h5>
+                    <p>
+                        Track student performance with detailed analytics and
+                        comprehensive reporting tools.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-clock-history feature-icon"></i>
+                    <h5>Attendance Tracking</h5>
+                    <p>
+                        Monitor student attendance with real-time tracking and
+                        automated notifications.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-shield-lock feature-icon"></i>
+                    <h5>Secure & Reliable</h5>
+                    <p>
+                        Enterprise-grade security ensures your data is always
+                        protected and accessible.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-award feature-icon"></i>
+                    <h5>Grade Management</h5>
+                    <p>
+                        Streamline grading processes with automated calculations
+                        and easy grade distribution.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="container mt-5">
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-book"></i></div>
+                <span class="stat-badge">+2 new</span>
+                <div class="stat-value">6</div>
+                <div class="stat-sub">Current</div>
+                <div class="stat-title">Courses in Progress</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-clock"></i></div>
+                <span class="stat-badge">Total</span>
+                <div class="stat-value">85%</div>
+                <div class="stat-sub">Current</div>
+                <div class="stat-title">Attendance Rate</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-star"></i></div>
+                <span class="stat-badge">+0.2</span>
+                <div class="stat-value">3.8</div>
+                <div class="stat-sub">Current</div>
+                <div class="stat-title">CGPA</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                <span class="stat-badge bg-warning text-dark">2 Pending</span>
+                <div class="stat-value">12</div>
+                <div class="stat-sub">Current</div>
+                <div class="stat-title">Completed Tasks</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 100px;">
+    <div class="row g-5">
+        <div class="col-md-4">
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-icon ">
+                        <img src="images/e9cda304e49dacfc43b835d8d73e2de0afefb698.png" alt="">
+                    </div>
+                    <div>
+                        <div class="course-title">Advanced Algorithms</div>
+                        <div class="course-sub">Prof. Sarah Jenkins · Mon, Wed 10:00 AM</div>
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" style="width:75%;border-radius: 25px;"></div>
+                </div>
+                <small class="float-end">75%</small>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-icon">
+                        <img src="images/83e823fb98ae991ad4e65b31aca10779271af51e.png" alt="">
+                    </div>
+                    <div>
+                        <div class="course-title">Database Systems</div>
+                        <div class="course-sub">Prof. Michael Chen · Tue, Thu 02:00 PM</div>
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" style="width:75%;border-radius: 25px"></div>
+                </div>
+                <small class="float-end">75%</small>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-icon">
+                        <img src="images/86f723cb54e6f6cf27a6beb65e0b804cc8ef2270.png" alt="">
+                    </div>
+                    <div>
+                        <div class="course-title">User Interface Design</div>
+                        <div class="course-sub">Prof. Emily Ross · Fri 09:00 AM</div>
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" style="width:75%;border-radius: 25px"></div>
+                </div>
+                <small class="float-end">75%</small>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h4 class="schedule-title" style="text-align: center;">Today's Schedule</h4>
+
+            <p class="time-green" style="margin-bottom: 0px;">09:00 AM - 10:30 AM</p>
+            <p class="fw-semibold" style="font-size: 1.2rem;margin:5px auto;">UI Design Workshop</p>
+            <p class="location"><i class="bi bi-geo-alt"></i> Room 302, Design Wing</p>
+
+
+            <p class="time-blue]" style="margin-bottom: 0px;">09:00 AM - 10:30 AM</p>
+            <p class="fw-semibold" style="font-size: 1.2rem;margin:5px auto;">Database Lab</p>
+            <p class="location"><i class="bi bi-geo-alt"></i> Computer Lab 4</p>
+
+            <p class="time-gray" style="margin-bottom: 0px;">02:00 PM - 03:30 PM</p>
+            <p class="fw-semibold" style="font-size: 1.2rem;margin:5px auto;">Lunch Break</p>
+            <p class="location"><i class="bi bi-cup-hot"></i> Cafeteria</p>
+        </div>
+
+        <div class="col-md-4">
+            <div class="assignment-card">
+                <h5 class="fw-bold mb-3 fs-3">
+                    Assignments Due
+                    <i class="bi bi-clock float-end"></i>
+                </h5>
+
+                <div class="assignment-item fs-4">
+                    Algorithm Analysis Report
+                    <span class="priority-high">High</span>
+                    <div class="mt-2">Due in 2 days</div>
+                </div>
+
+                <div class="submit-btn mb-3 fs-4">Submit now</div>
+
+                <div class="assignment-item fs-4">
+                    UX Case Study
+                    <span class="priority-medium">Medium</span>
+                    <div class="mt-2">Due in 2 days</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="graph-section">
+    <div class="container">
+        <h2>Academic Performance</h2>
+        <p>Your average grades over the last semester</p>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="container stats-content">
+        <div class="row text-center">
+
+            <div class="col-md-3 stat-box">
+                <h3>10K+</h3>
+                <p>Active Students</p>
+            </div>
+
+            <div class="col-md-3 stat-box">
+                <h3>500+</h3>
+                <p>Institutions</p>
+            </div>
+
+            <div class="col-md-3 stat-box">
+                <h3>98%</h3>
+                <p>Satisfaction Rate</p>
+            </div>
+
+            <div class="col-md-3 stat-box">
+                <h3>24/7</h3>
+                <p>Support</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-section">
+    <div class="container">
+        <h2 style="text-align: center;font-size: 2.5rem;">What Our Users Say</h2>
+        <p style="text-align: center;margin-top: 25px;color: black;font-size: 1.5rem;">Trusted by educational institutions worldwide</p>
+
+        <div class="row mt-5 g-4">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="stars mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <img src="images/47390948c167cf65f27b17cad49f9c45e4669b90.jpg" class="user-img">
+
+                    <p class="mt-3">
+                        "EduManage has transformed how we handle student data.
+                        It's intuitive, powerful, and saves us countless hours every week."
+                    </p>
+
+                    <div class="user-name">Dr. Sarah Johnson</div>
+                    <div class="user-role">Dean, Springfield University</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="stars mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <img src="images/e317ed5d17c4bf44028fbfa9a432d702131db222.jpg" class="user-img">
+
+                    <p class="mt-3">
+                        "The attendance tracking and grade management features
+                        are game-changers. Highly recommend for any institution."
+                    </p>
+
+                    <div class="user-name">Dr. Matt Henry</div>
+                    <div class="user-role">Principal, Riverside Academy</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="stars mb-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <img src="images/3a86b9870b6e067e5ead673c06445615345f624a.jpg" class="user-img">
+
+                    <p class="mt-3">
+                        "Outstanding support and constant improvements.
+                        EduManage adapts perfectly to our workflow."
+                    </p>
+
+                    <div class="user-name">Dr. James Anderson</div>
+                    <div class="user-role">Administrator, Central College</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="cta-section text-center">
+    <div class="container">
+        <h2>Ready to Transform Your Institution?</h2>
+        <p>Join thousands of institutions already using EduManage to streamline their operations.</p>
+        <button class="cta-btn">Get started</button>
+    </div>
+</section>
+
+<div class="container">
+    <h2 class="faq-title">FAQ</h2>
+
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    Q1. What is EduTrack?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    EduTrack is an all-in-one student management system designed to help schools,
+                    colleges, and training centers manage student records efficiently.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    Q2. Who can use EduTrack?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    EduTrack is ideal for administrators, teachers, students, and parents.
+                    Each user gets a customized dashboard.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    Q3. Is EduTrack cloud-based?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, EduTrack is fully cloud-based, allowing secure access anytime, anywhere.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    Q4. Can I track attendance and grades online?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, you can record attendance, upload marks, and generate report card directly from the dashboard.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-section">
+    <div class="container px-2">
+
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5 col-md-6">
+                <div class="d-flex mb-3">
+                    <a class="navbar-brand logo-wrapper" href="#">
+                        <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+                        <span class="logo-text">Edu manage</span>
+                    </a>    
+                    <div style="margin-left: 10px;margin-top: 15px;">
+                        <h4 class="mb-0 text-white fw-bold">EduManage</h4>
+                        <p class="footer-desc">
+                            Modern student management system for educational institutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Home</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Event</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 text-lg-end">
+                <h5 class="footer-title">Follow Us On :</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-google"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-bottom">
+            © 2025 EduManage. All rights reserved.
+        </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-header">
+    Comprehensive student management system
+</div>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand logo-wrapper" href="home.html">
+            <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+            <span class="logo-text">Edu manage</span>
+        </a>
+
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link " href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="course.html">Course</a></li>
+                <li class="nav-item"><a class="nav-link" href="session.html">Sessions</a></li>
+                <li class="nav-item"><a class="nav-link" href="event.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-bell text-white fs-4" data-bs-toggle="modal"
+                data-bs-target="#notificationModal" style="cursor: pointer;"></i>
+                <i class="bi bi-headset text-white fs-4" onclick="window.location.href='contact.html'" style="cursor: pointer;"></i>
+                
+                <a class="d-flex align-items-center user-btn dropdown-toggle text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="user-img" alt="User">
+                    <span class="ms-2">Ravi</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade notification-modal"
+     id="notificationModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-4">
+          <div class="notification-title">Attendance Alert:</div>
+          <div class="notification-text">
+            "Your attendance has fallen below 75%. Please attend upcoming classes regularly."
+          </div>
+        </div>
+
+        <div>
+          <div class="notification-title">Event Notification:</div>
+          <div class="notification-text">
+            "Cultural Fest 2025 registrations are now open! Join before Nov 10th."
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade modal1" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Register Free !</h2>
+
+            <input type="email" class="form-control custom-input mb-3" placeholder="Enter your e-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn login-btn w-50" onclick="loginSuccess()">Login</button>
+                <a href="#" class="forgot-link">Forget your password?</a>
+            </div>
+
+            <div class="text-center my-3">
+                <span class="line"></span>
+                <span class="mx-2 fw-semibold">Sign Up Using</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="social-box text-center">
+                <i class="bi bi-google"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+            </div>
+
+            <p class="text-center mt-4">
+                Don't have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#signUpModal">Create New Account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Login Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="signUpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Sign Up</h2>
+
+            <input type="text" class="form-control custom-input mb-3" placeholder="Full Name">
+            <input type="email" class="form-control custom-input mb-3" placeholder="E-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <button class="btn login-btn w-50 d-block" style="margin: 50px auto;" onclick="signupSuccess()">Sign Up</button>
+           
+            <p class="text-center mt-4">
+                Already have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#registerModal">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Signup Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<script>
+    function loginSuccess() {
+        let registerModal = bootstrap.Modal.getInstance(
+            document.getElementById('registerModal')
+        );
+        registerModal.hide();
+
+        let successModal = new bootstrap.Modal(
+            document.getElementById('successModal')
+        );
+        successModal.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+
+    function signupSuccess() {
+        let signUpModal = bootstrap.Modal.getInstance(
+            document.getElementById('signUpModal')
+        );
+        signUpModal.hide();
+
+        let successModal1 = new bootstrap.Modal(
+            document.getElementById('successModal1')
+        );
+        successModal1.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+</script>
+
+<div class="container-fluid py-4">
+  <div class="row g-4">
+
+    <div class="col-lg-3 col-xl-2">
+
+        <div class="sidebar h-100">
+            <h3>Edu Track</h3>
+
+            <a href="dashboard.html" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="course.html"><i class="bi bi-book"></i> My Courses</a>
+            <a href="session.html"><i class="bi bi-calendar"></i> Schedule</a>
+            <a href="attendance.html"><i class="bi bi-clipboard-check"></i> Attendance</a>
+            <a href="assignment.html"><i class="bi bi-journal-text"></i> Assignments</a>
+            <a href="finance.html"><i class="bi bi-cash"></i> Finance Details</a>
+            <a href="exam.html"><i class="bi bi-mortarboard"></i> Exam and Grades</a>
+
+            <div class="profile">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="rounded-circle">
+                    <div class="profile-info">
+                    <strong>Mikejohn</strong><br>
+                    <small class="text-muted">Mike@gmail.com</small>
+                    </div>
+                </div>
+                <button class="btn btn-primary rounded-pill" onclick="window.location.href='index.html'">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main col-lg-9 col-xl-10">
+        <div class="header d-flex justify-content-between align-items-center">
+            <div>
+                <h4>Hello, Alex!</h4>
+                <p class="text-muted mb-0">Here's what's happening with your studies today.</p>
+            </div>
+            <input type="text" class="form-control search-box w-25" placeholder="🔍 Search Information">
+        </div>
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-book"></i></div>
+                    <span class="stat-badge">+2 new</span>
+                    <div class="stat-value">6</div>
+                    <div class="stat-sub">Current</div>
+                    <div class="stat-title">Courses in Progress</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-clock"></i></div>
+                    <span class="stat-badge">Total</span>
+                    <div class="stat-value">85%</div>
+                    <div class="stat-sub">Current</div>
+                    <div class="stat-title">Attendance Rate</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-star"></i></div>
+                    <span class="stat-badge">+0.2</span>
+                    <div class="stat-value">3.8</div>
+                    <div class="stat-sub">Current</div>
+                    <div class="stat-title">CGPA</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                    <span class="stat-badge bg-warning text-dark">2 Pending</span>
+                    <div class="stat-value">12</div>
+                    <div class="stat-sub">Current</div>
+                    <div class="stat-title">Completed Tasks</div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-8" style="background:#fff;border-radius:14px;
+            padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);">
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 style="color: black;font-size: 2rem;font-weight: bold;">Current Courses</h5>
+                    <a href="#" class="fw-semibold fs-3" style="text-decoration: none;">View All</a>
+                </div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon ">
+                            <img src="images/e9cda304e49dacfc43b835d8d73e2de0afefb698.png" alt="">
+                        </div>
+                        <div>
+                            <div class="course-title">Advanced Algorithms</div>
+                            <div class="course-sub">Prof. Sarah Jenkins · Mon, Wed 10:00 AM</div>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" style="width:75%;border-radius: 25px;"></div>
+                    </div>
+                    <small class="float-end">75%</small>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon">
+                            <img src="images/83e823fb98ae991ad4e65b31aca10779271af51e.png" alt="">
+                        </div>
+                        <div>
+                            <div class="course-title">Database Systems</div>
+                            <div class="course-sub">Prof. Michael Chen · Tue, Thu 02:00 PM</div>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" style="width:75%;border-radius: 25px"></div>
+                    </div>
+                    <small class="float-end">75%</small>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon">
+                            <img src="images/86f723cb54e6f6cf27a6beb65e0b804cc8ef2270.png" alt="">
+                        </div>
+                        <div>
+                            <div class="course-title">User Interface Design</div>
+                            <div class="course-sub">Prof. Emily Ross · Fri 09:00 AM</div>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" style="width:75%;border-radius: 25px"></div>
+                    </div>
+                    <small class="float-end">75%</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="schedule-card">
+                    <h5 style="color: black;font-size: 2rem;font-weight: bold;">Today's Schedule</h5>
+
+                    <div class="mt-5 d-flex gap-3">
+                        <div class="timeline-dot" style="background-color: green;"></div>
+                        <div>
+                            <strong class="text-success fs-5">09:00 AM - 10:30 AM</strong>
+                            <p class="mb-0 fw-semibold fs-5">UI Design Workshop</p>
+                            <i class="bi bi-geo-alt"></i>
+                            <small class="text-muted fs-6">Room 302, Design Wing</small>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 d-flex gap-3">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <strong class="fs-5" style="color: blue;">09:00 AM - 10:30 AM</strong>
+                            <p class="mb-0 fw-semibold fs-5">Database Lab</p>
+                            <i class="bi bi-geo-alt"></i>
+                            <small class="text-muted fs-6">Computer Lab 4</small>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 d-flex gap-3">
+                        <div class="timeline-dot gray"></div>
+                        <div>
+                            <strong class="text-muted fs-5">02:00 PM - 03:30 PM</strong>
+                            <p class="mb-0 fw-semibold fs-5">Lunch Break</p>
+                            <i class="bi bi-geo-alt"></i>
+                            <small class="text-muted fs-6">Cafeteria</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+</div>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="card performance-card h-100">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-2 fs-2" style="color: black;">Academic Performance</h4>
+                    <p class="text-muted mb-4 fs-4 fw-semibold">
+                        Your average grades over the last semester
+                    </p>
+
+                    <img src="images/f8b1ff57da2e161f2548051dfccf6a3ba549d708.png" alt="Academic Performance Graph" class="img-fluid graph-img">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card assignment-card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-white fw-bold fs-3">Assignments Due</h5>
+                    <div class="clock-icon"><i class="bi bi-clock float-end"></i></div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="assignment-box mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-2 text-white fs-4">Algorithm Analysis Report</h6>
+                            <span class="badge bg-danger">High</span>
+                        </div>
+                        <small class="text-light fs-5">Due in 2 days</small>
+                    </div>
+
+                    <button class="btn btn-light w-100 fw-semibold mb-3 fs-4" style="color: blue;">
+                        Submit now
+                    </button>
+
+                    <div class="assignment-box">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-2 text-white fs-4">UX Case Study</h6>
+                            <span class="badge bg-warning text-white">Medium</span>
+                        </div>
+                        <small class="text-light fs-5">Due in 2 days</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer-section">
+    <div class="container px-2">
+
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5 col-md-6">
+                <div class="d-flex mb-3">
+                    <a class="navbar-brand logo-wrapper" href="#">
+                        <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+                        <span class="logo-text">Edu manage</span>
+                    </a>    
+                    <div style="margin-left: 10px;margin-top: 15px;">
+                        <h4 class="mb-0 text-white fw-bold">EduManage</h4>
+                        <p class="footer-desc">
+                            Modern student management system for educational institutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Home</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Event</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 text-lg-end">
+                <h5 class="footer-title">Follow Us On :</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-google"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-bottom">
+            © 2025 EduManage. All rights reserved.
+        </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

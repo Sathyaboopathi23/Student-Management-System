@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .event-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .event-content:hover{
+            background-color: blue;
+            color: white;
+        }
+
+        .calendar-box {
+            background: #0d4ef7;
+            color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar-header button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+        }
+
+        .calendar-days,
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+        }
+
+        .calendar-days span {
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .calendar-dates span {
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .calendar-dates span.active {
+            border: 2px solid #fff;
+        }
+
+        .calendar-dates span:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .view-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #fff;
+            color: #000;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+        }
+
+        .calendar-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+<div class="top-header">
+    Comprehensive student management system
+</div>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand logo-wrapper" href="home.html">
+            <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+            <span class="logo-text">Edu manage</span>
+        </a>
+
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link " href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link " href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link " href="course.html">Course</a></li>
+                <li class="nav-item"><a class="nav-link" href="session.html">Sessions</a></li>
+                <li class="nav-item"><a class="nav-link active" href="event.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-bell text-white fs-4" data-bs-toggle="modal"
+                data-bs-target="#notificationModal" style="cursor: pointer;"></i>
+                <i class="bi bi-headset text-white fs-4" onclick="window.location.href='contact.html'" style="cursor: pointer;"></i>
+                
+                <a class="d-flex align-items-center user-btn dropdown-toggle text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <img src="images/8f26f922737c90b127d371ae2ece47cfc441c2d9.jpg" class="user-img" alt="User">
+                    <span class="ms-2">Ravi</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade notification-modal"
+     id="notificationModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-4">
+          <div class="notification-title">Attendance Alert:</div>
+          <div class="notification-text">
+            "Your attendance has fallen below 75%. Please attend upcoming classes regularly."
+          </div>
+        </div>
+
+        <div>
+          <div class="notification-title">Event Notification:</div>
+          <div class="notification-text">
+            "Cultural Fest 2025 registrations are now open! Join before Nov 10th."
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade modal1" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Register Free !</h2>
+
+            <input type="email" class="form-control custom-input mb-3" placeholder="Enter your e-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn login-btn w-50" onclick="loginSuccess()">Login</button>
+                <a href="#" class="forgot-link">Forget your password?</a>
+            </div>
+
+            <div class="text-center my-3">
+                <span class="line"></span>
+                <span class="mx-2 fw-semibold">Sign Up Using</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="social-box text-center">
+                <i class="bi bi-google"></i>
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+            </div>
+
+            <p class="text-center mt-4">
+                Don't have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#signUpModal">Create New Account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Login Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="signUpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content register-modal">
+            <button class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"></button>
+
+            <h2 class="text-center fw-bold mb-4">Sign Up</h2>
+
+            <input type="text" class="form-control custom-input mb-3" placeholder="Full Name">
+            <input type="email" class="form-control custom-input mb-3" placeholder="E-mail">
+            <input type="password" class="form-control custom-input mb-3" placeholder="Password">
+
+            <button class="btn login-btn w-50 d-block" style="margin: 50px auto;" onclick="signupSuccess()">Sign Up</button>
+           
+            <p class="text-center mt-4">
+                Already have an account ?
+                <a href="#" class="create-link" data-bs-toggle="modal" data-bs-target="#registerModal">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal1" id="successModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content success-modal">
+            <div class="success-header">
+                <h4>Welcome Our Students</h4>
+                <p>Signup Successfully</p>
+            </div>
+            <img src="images/schoolboy.png" class="img-fluid success-img">
+        </div>
+    </div>
+</div>
+
+<script>
+    function loginSuccess() {
+        let registerModal = bootstrap.Modal.getInstance(
+            document.getElementById('registerModal')
+        );
+        registerModal.hide();
+
+        let successModal = new bootstrap.Modal(
+            document.getElementById('successModal')
+        );
+        successModal.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+
+    function signupSuccess() {
+        let signUpModal = bootstrap.Modal.getInstance(
+            document.getElementById('signUpModal')
+        );
+        signUpModal.hide();
+
+        let successModal1 = new bootstrap.Modal(
+            document.getElementById('successModal1')
+        );
+        successModal1.show();
+
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 3000);
+    }
+</script>
+
+<div class="container-fluid py-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="row g-4">
+
+        <div class="col-md-6">
+          <div class="event-card">
+            <img src="images/3d5d8c2bb4d97c4bcd70c6bc022032a3cb837f28.jpg" alt="img1">
+            <div class="p-3 event-content">
+              <h3>Science Exhibition 2025</h3>
+              <p class="fs-5">March 14, 2025</p>
+              <p class="fs-5">10:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="event-card">
+            <img src="images/056499cc3f60ed8f02e2ac570bddfed7b15a99f4.jpg" alt="img2">
+           
+            <div class="p-3 event-content">
+              <h3>Science Exhibition 2025</h3>
+              <p class="fs-5">March 14, 2025</p>
+              <p class="fs-5">10:00 AM - 4:00 PM</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="event-card">
+            <img src="images/9447abbdc4ed60f2500f12faf744d6ecb5c98ff4.jpg" alt="img3">
+            <div class="p-3 event-content">
+              <h3>Science Exhibition 2025</h3>
+              <p class="fs-5">March 14, 2025</p>
+              <p class="fs-5">10:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="event-card">
+            <img src="images/8240afda810bec1d4718036abdf301e58ccf90ee.jpg" alt="img4">
+            <div class="p-3 event-content">
+              <h3>Science Exhibition 2025</h3>
+              <p class="fs-5">March 14, 2025</p>
+              <p class="fs-5">10:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+
+      <div class="calendar-box mb-4">
+        <div class="calendar-header">
+          <button onclick="prevMonth()">&#10094;</button>
+          <h5 id="monthYear"></h5>
+          <button onclick="nextMonth()">&#10095;</button>
+        </div>
+
+        <div class="calendar-days">
+          <span>Sun</span><span>Mon</span><span>Tue</span>
+          <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+
+        <div class="calendar-dates" id="calendarDates"></div>
+
+        <button class="view-btn" onclick="window.location.href='allEvents.html'">View All Events</button>
+      </div>
+
+      <div class="calendar-image">
+        <img src="images/893beef95c6e75dd4fdbb0ec771a0a4a382d3c43.png" alt="img5">
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+    const monthYear = document.getElementById("monthYear");
+    const calendarDates = document.getElementById("calendarDates");
+
+    let date = new Date();
+
+    function renderCalendar() {
+    calendarDates.innerHTML = "";
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    monthYear.innerText =
+        date.toLocaleString("default", { month: "long" }) + " " + year;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+        calendarDates.innerHTML += `<span></span>`;
+    }
+
+    for (let day = 1; day <= lastDate; day++) {
+        let active =
+        day === new Date().getDate() &&
+        month === new Date().getMonth() &&
+        year === new Date().getFullYear()
+            ? "active"
+            : "";
+
+        calendarDates.innerHTML += `<span class="${active}">${day}</span>`;
+    }
+    }
+
+    function prevMonth() {
+    date.setMonth(date.getMonth() - 1);
+    renderCalendar();
+    }
+
+    function nextMonth() {
+    date.setMonth(date.getMonth() + 1);
+    renderCalendar();
+    }
+
+    renderCalendar();
+</script>
+
+<footer class="footer-section">
+    <div class="container px-2">
+
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5 col-md-6">
+                <div class="d-flex mb-3">
+                    <a class="navbar-brand logo-wrapper" href="#">
+                        <img src="images/7cfdf39738ade45b531f161f7949505e1ffaa445.jpg" alt="Logo">
+                        <span class="logo-text">Edu manage</span>
+                    </a>    
+                    <div style="margin-left: 10px;margin-top: 15px;">
+                        <h4 class="mb-0 text-white fw-bold">EduManage</h4>
+                        <p class="footer-desc">
+                            Modern student management system for educational institutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Home</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Event</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3">
+                <h5 class="footer-title">Support</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 text-lg-end">
+                <h5 class="footer-title">Follow Us On :</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-google"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <p class="footer-bottom">
+            © 2025 EduManage. All rights reserved.
+        </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
